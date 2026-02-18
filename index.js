@@ -11,11 +11,15 @@ const sadniggaemoji = document.getElementById('sadView');
 const hertzcon = document.getElementById('heartsContainer');
 const raincon = document.getElementById('rainContainer');
 const main = document.getElementById('mainCard');
-let sure = 0; // is she sure 🥺
-
-// Turkish ass niggas
-const url_params = new URLSearchParams(window.location.search);
-if (url_params.get('lang') === 'turk') {
+let sure = 0; 
+const stitchhappy = "https://media.tenor.com/Rv3x7_Mlj1kAAAAi/stich-beso.gif";
+const sadnigga = "https://media.tenor.com/4M_9c_273YwAAAAj/stitch.gif";
+const preloadedStitchFloat = new Image();
+preloadedStitchFloat.src = stitchhappy;
+const preloadedStitchSad = new Image();
+preloadedStitchSad.src = sadnigga;
+const params = new URLSearchParams(window.location.search);
+if (params.get('lang') === 'turk') {
     if (question) {
         const q_h1 = question.querySelector('h1');
         const q_p = question.querySelector('p');
@@ -38,19 +42,21 @@ if (url_params.get('lang') === 'turk') {
     }
     if (shesaidyes) {
         const s_msg = shesaidyes.querySelector('.success-message');
-        if (s_msg) s_msg.innerHTML = "Hayatımızda belki ilk aşık olduğumuz kişi değildin ama gerçekten “işte bu” dediğimiz, unutulmaz olan sendin.<br>İlk aşkım sensin.";
+        if (s_msg) s_msg.innerHTML = "Hayatımızda belki ilk aşık olduğumuz kişi değildin ama gerçekten işte bu dediğimiz, unutulmaz olan sendin.<br>İlk aşkım sensin.";
     }
     if (sadniggaemoji) {
         const s_h1 = sadniggaemoji.querySelector('h1');
         if (s_h1) s_h1.innerText = "Tamam...";
     }
 }
+
 function createhertz() {
    const heart_count = 15;
    for (let i = 0; i < heart_count; i++) {
       oneheart();
    }
 }
+
 function oneheart() {
    const heart = document.createElement('div');
    heart.classList.add('heart-shape');
@@ -59,15 +65,16 @@ function oneheart() {
    heart.style.left = Math.random() * 100 + 'vw';
    heart.style.width = (Math.random() * 20 + 10) + 'px';
    heart.style.height = heart.style.width;
-   heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
-   heart.style.animationDelay = Math.random() * 5 + 's';
+   const heartDur = Math.random() * 5 + 5;
+   heart.style.animationDuration = heartDur + 's';
+   heart.style.animationDelay = '-' + (Math.random() * heartDur) + 's';
    hertzcon.appendChild(heart);
 }
+
 function stitches() {
    const stitchcount = 20;
    for (let i = 0; i < stitchcount; i++) {
-      const stitch = document.createElement('img');
-      stitch.src = "https://media.tenor.com/Rv3x7_Mlj1kAAAAi/stich-beso.gif";
+      const stitch = preloadedStitchFloat.cloneNode();
       stitch.classList.add('heart-shape');
       stitch.style.left = Math.random() * 100 + 'vw';
       stitch.style.width = '40px';
@@ -75,11 +82,13 @@ function stitches() {
       stitch.style.pointerEvents = 'none';
       stitch.style.zIndex = '0';
       stitch.style.borderRadius = '50%';
-      stitch.style.animationDuration = (Math.random() * 5 + 5) + 's';
-      stitch.style.animationDelay = Math.random() * 5 + 's';
+      const stitchDur = Math.random() * 5 + 5;
+      stitch.style.animationDuration = stitchDur + 's';
+      stitch.style.animationDelay = '-' + (Math.random() * stitchDur) + 's';
       hertzcon.appendChild(stitch);
    }
 }
+
 function gravylaughed() {
    const dcount = 100;
    for (let i = 0; i < dcount; i++) {
@@ -92,6 +101,7 @@ function gravylaughed() {
       raincon.appendChild(drop);
    }
 }
+
 function showflow() {
    question.classList.add('hidden');
    darklife.classList.add('hidden');
@@ -102,24 +112,28 @@ function showflow() {
       doveofpeace();
    }, 2500);
 }
+
 nbtn.addEventListener('mouseenter', function () {
    body.classList.add('dark-mode');
 });
+
 nbtn.addEventListener('mouseleave', function () {
    if (!darklife.classList.contains('hidden')) return;
    body.classList.remove('dark-mode');
 });
+
 nbtn.addEventListener('click', function () {
    body.classList.add('dark-mode');
    hertzcon.innerHTML = '';
    question.classList.add('hidden');
    darklife.classList.remove('hidden');
-   sure = 0; 
+   sure = 0;
    const url_params_reset = new URLSearchParams(window.location.search);
    if (url_params_reset.get('lang') === 'turk') {
        wedeadass.innerText = "Emin misin?";
    }
 });
+
 wedeadass.addEventListener('click', function () {
    sure++;
    if (sure === 1) {
@@ -132,17 +146,21 @@ wedeadass.addEventListener('click', function () {
       sure = 0;
    }
 });
+
 noicantomg.addEventListener('click', function () {
-   sure = 0; // Reset count if she comes back 🥹🥺😌🥺🥹🥺🥹🙏🥺🥺🥹🥹🥹🥺🙏🙏🥺😌
+   sure = 0; 
    body.classList.remove('dark-mode');
    darklife.classList.add('hidden');
    question.classList.remove('hidden');
+   hertzcon.innerHTML = ''; 
    createhertz();
-   stitches(); 
+   stitches();
 });
+
 ybtn.addEventListener('click', function () {
    showflow();
 });
+
 function doveofpeace() {
    for (let i = 0; i < 50; i++) {
       const confetti = document.createElement('div');
@@ -175,13 +193,13 @@ function doveofpeace() {
       };
    }
 }
+
 function setupgifs() {
     if (shesaidyes) {
         const heartIcon = shesaidyes.querySelector('.big-heart-icon');
         if (heartIcon && !document.getElementById('final-success-stitch')) {
-            const img = document.createElement('img');
+            const img = preloadedStitchFloat.cloneNode();
             img.id = 'final-success-stitch';
-            img.src = "https://media.tenor.com/Rv3x7_Mlj1kAAAAi/stich-beso.gif";
             img.style.width = '100px';
             img.style.height = 'auto';
             img.style.marginLeft = '15px';
@@ -190,15 +208,15 @@ function setupgifs() {
             heartIcon.insertAdjacentElement('afterend', img);
         }
     }
+
     if (sadniggaemoji) {
         const sadEmojiDiv = sadniggaemoji.querySelector('.sad-emoji');
         if (sadEmojiDiv && !sadEmojiDiv.querySelector('img')) {
-            sadEmojiDiv.innerHTML = '';
-            const img = document.createElement('img');
-            img.src = "https://media.tenor.com/4M_9c_273YwAAAAj/stitch.gif";
+            const img = preloadedStitchSad.cloneNode();
             img.style.width = '120px';
             img.style.height = 'auto';
             img.style.borderRadius = '10px';
+            sadEmojiDiv.innerHTML = '';
             sadEmojiDiv.appendChild(img);
         }
     }
