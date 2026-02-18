@@ -37,7 +37,7 @@ if (url_params.get('lang') === 'turk') {
     }
     if (shesaidyes) {
         const s_msg = shesaidyes.querySelector('.success-message');
-        if (s_msg) s_msg.innerHTML = "Sana iyi davranacağım,<br>söz veriyorum.";
+        if (s_msg) s_msg.innerHTML = "Hayatımızda belki ilk aşık olduğumuz kişi değildin ama gerçekten “işte bu” dediğimiz, unutulmaz olan sendin.<br>İlk aşkım sensin.";
     }
     if (sadniggaemoji) {
         const s_h1 = sadniggaemoji.querySelector('h1');
@@ -158,4 +158,5 @@ function doveofpeace() {
    }
 }
 createhertz();
+
 gravylaughed();
