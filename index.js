@@ -38,7 +38,7 @@ if (params.get('lang') === 'turk') {
     if (noicantomg) noicantomg.innerText = "Hayır, sensiz yaşayamam";
     if (loadingstate) {
         const l_text = loadingstate.querySelector('.loading-text');
-        if (l_text) l_text.innerText = "Aşk Yükleniyor...";
+        if (l_text) l_text.innerText = "Aşkımız Oluşturuluyor...";
     }
     if (shesaidyes) {
         const s_msg = shesaidyes.querySelector('.success-message');
