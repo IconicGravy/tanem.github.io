@@ -12,6 +12,7 @@ const hertzcon = document.getElementById('heartsContainer');
 const raincon = document.getElementById('rainContainer');
 const main = document.getElementById('mainCard');
 let sure = 0; // is she sure 🥺
+
 // Turkish ass niggas
 const url_params = new URLSearchParams(window.location.search);
 if (url_params.get('lang') === 'turk') {
@@ -61,6 +62,23 @@ function oneheart() {
    heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
    heart.style.animationDelay = Math.random() * 5 + 's';
    hertzcon.appendChild(heart);
+}
+function stitches() {
+   const stitchcount = 20;
+   for (let i = 0; i < stitchcount; i++) {
+      const stitch = document.createElement('img');
+      stitch.src = "https://media.tenor.com/Rv3x7_Mlj1kAAAAi/stich-beso.gif";
+      stitch.classList.add('heart-shape');
+      stitch.style.left = Math.random() * 100 + 'vw';
+      stitch.style.width = '40px';
+      stitch.style.height = 'auto';
+      stitch.style.pointerEvents = 'none';
+      stitch.style.zIndex = '0';
+      stitch.style.borderRadius = '50%';
+      stitch.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      stitch.style.animationDelay = Math.random() * 5 + 's';
+      hertzcon.appendChild(stitch);
+   }
 }
 function gravylaughed() {
    const dcount = 100;
@@ -114,13 +132,13 @@ wedeadass.addEventListener('click', function () {
       sure = 0;
    }
 });
-
 noicantomg.addEventListener('click', function () {
    sure = 0; // Reset count if she comes back 🥹🥺😌🥺🥹🥺🥹🙏🥺🥺🥹🥹🥹🥺🙏🙏🥺😌
    body.classList.remove('dark-mode');
    darklife.classList.add('hidden');
    question.classList.remove('hidden');
    createhertz();
+   stitches(); 
 });
 ybtn.addEventListener('click', function () {
    showflow();
@@ -157,6 +175,36 @@ function doveofpeace() {
       };
    }
 }
-createhertz();
+function setupgifs() {
+    if (shesaidyes) {
+        const heartIcon = shesaidyes.querySelector('.big-heart-icon');
+        if (heartIcon && !document.getElementById('final-success-stitch')) {
+            const img = document.createElement('img');
+            img.id = 'final-success-stitch';
+            img.src = "https://media.tenor.com/Rv3x7_Mlj1kAAAAi/stich-beso.gif";
+            img.style.width = '100px';
+            img.style.height = 'auto';
+            img.style.marginLeft = '15px';
+            img.style.verticalAlign = 'middle';
+            img.style.borderRadius = '10px';
+            heartIcon.insertAdjacentElement('afterend', img);
+        }
+    }
+    if (sadniggaemoji) {
+        const sadEmojiDiv = sadniggaemoji.querySelector('.sad-emoji');
+        if (sadEmojiDiv && !sadEmojiDiv.querySelector('img')) {
+            sadEmojiDiv.innerHTML = '';
+            const img = document.createElement('img');
+            img.src = "https://media.tenor.com/4M_9c_273YwAAAAj/stitch.gif";
+            img.style.width = '120px';
+            img.style.height = 'auto';
+            img.style.borderRadius = '10px';
+            sadEmojiDiv.appendChild(img);
+        }
+    }
+}
 
+createhertz();
+stitches();
 gravylaughed();
+setupgifs();
